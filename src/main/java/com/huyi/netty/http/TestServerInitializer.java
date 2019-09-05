@@ -1,6 +1,5 @@
-package com.huyi.netty;
+package com.huyi.netty.http;
 
-import com.sun.net.httpserver.HttpServer;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

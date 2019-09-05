@@ -1,4 +1,4 @@
-package com.huyi.netty;
+package com.huyi.netty.http;
 
 
 import io.netty.buffer.ByteBuf;
@@ -24,6 +24,7 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
             HttpRequest httpRequest = (HttpRequest) msg;
             System.out.println("请求方法名：" + httpRequest.method().name());
             URI uri = new URI(httpRequest.uri());
+            //请求路由
             if ("/favicon.ico".equals(uri.getPath())) {
                 System.out.println("请求ico ");
                 return;
