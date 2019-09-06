@@ -14,7 +14,7 @@ public class MyChatServerInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        pipeline.addLast( new DelimiterBasedFrameDecoder(4906, Delimiters.lineDelimiter()));
+        pipeline.addLast( new DelimiterBasedFrameDecoder(5241, Delimiters.lineDelimiter()));
         pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
         pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
         pipeline.addLast(new MyChatServerHandler());
