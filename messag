@@ -32,3 +32,4 @@ RPC  Remote Procedure call  ,远程过程调用  很多RPC框架都是跨语言
         
         关于NIO中3个重要状态属性的含有：position Limit  capacity 
          Spliterator
+        0<= maker <=position<= limit <=capacity
