@@ -1,0 +1,34 @@
+RMI  --- remote method invocation    只针对Java
+ 序列化与反序列化  也叫: 编码与解码
+
+
+RPC  Remote Procedure call  ,远程过程调用  很多RPC框架都是跨语言
+
+    定义一个接口说明文件：描述了对象（结构体），对象成员，接口方法等一系列信息
+    通过RPC宽假说提供的编译器,将接口说明文件编译成具体的语言文件
+    在客户端与服服务端分别引入RPC编译所生成的文件，即可像调用本地文件一样调用远程方法
+    
+    
+    
+    装饰设计模式（又叫包装模式  对对象的扩展）在
+    Java IO   核心的是stream 面向流编程  不肯能即使输出流 又是输出流  要么是输入流，输出流
+    
+    InputStream
+        Fileinputstream 
+    节点流  继承InputStream方法
+    过滤流
+    OutputStream
+        FileOutPutStream
+            FileOutPutStream
+ Java NIO  3个核心概念  selector channel buffer  面向块（block） 或者是缓冲区（buffer） 编程 
+        buffer本身就是一块内存区域，底层实现上，它是是一个数组。数据的读，写都是通过buffer来实现的
+        除了数组之外，Buffer还提供了对于数据的结构化访问放方式，并可以追踪到系统的读写过程
+        Java中8种原生的数据类型都有个自的Buffer类型  InterBuffer  并备有BooleanBuffer
+        channel指的是可以像其中写入数据或者读取数据，它类似与Java.Io的stream
+        所有数据的读写都是通过IBuffer来进行的 永远不会出现直接像channel写入数据的情况 ，或者直接从channel读取对象
+        与stream对象不同 channel是双向的，一个流可能是InputStream或者是Output stream，channel打开后则可以进行双向读取，写入或者是读取
+        由于channel是双向的，因此跟佳能沟反映出底层操作系统的真实情况
+        channel总是和Buffer像结合使用的
+        
+        关于NIO中3个重要状态属性的含有：position Limit  capacity 
+         Spliterator
