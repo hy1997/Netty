@@ -37,7 +37,4 @@ public class NioTest9 {
         fileOutputStream.close();
     }
 
-
-
-
 }
