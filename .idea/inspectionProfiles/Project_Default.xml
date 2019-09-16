@@ -1,0 +1,28 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyInterpreterInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="datetime" />
+          <option value="random" />
+          <option value="os" />
+          <option value="socket" />
+          <option value="sys" />
+          <option value="threading" />
+          <option value="time" />
+          <option value="wrapcache" />
+          <option value="init.select_ticket_info.staticmethod" />
+          <option value="json" />
+          <option value="copy" />
+          <option value="re" />
+          <option value="init.login.str" />
+          <option value="init.login.isinstance" />
+          <option value="urllib" />
+          <option value="inter.SubmitOrderRequest.collections" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
