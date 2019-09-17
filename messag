@@ -43,6 +43,49 @@ RPC  Remote Procedure call  ,远程过程调用  很多RPC框架都是跨语言
         
         
         
+        Reactor模式
+        反应模式
+        
+        Netty整体架构是Reactor模式的完整体现
+
+
+
+
+
+
         
         
         
+        
+        
+F Untitled-1 0
+Reactor模式的角色构成(Reactor模式 一共有5种角色构成) :
+
+1. Handle (向柄或是描述符:本质上表示种资源，是由操作系统提供的;该资源用于表示一个个的事件，比如说文件描述符，或是针对网络编程中的Socket措述符。事件
+既可以来自于外部，也可以来自于内部外部事件比如说客户端的连接请求，客户端发送过来数据等内部事件比如说操作系统产生的定时器事件等。它本质上就是个文件描述
+符。Bandle是事件产生的发源地。
+2. Synchronous Event Demultiploxor (同步事件分离器: 它本身是个系统调用，用于等待事件的发生(事件可能是个，也可能是多个) . 调用方在调用它的时候会
+被阳富，一直阻富到同步事件分离器上有事件产生为止。对于Linux来说同步事件分离器指的就是常用的工/0多路复用机制，比如说select、 poll、epo11等。在Java NIO
+领域中，同步事件分高器对应的组件就是8elctor:对应的阳富方法就是select方法。
+3. Event Handler (事件处理器) :本身由多个回调方法构成这些回调方法构成了与应用相关的对于某个事件的反馈机制。Netty相比于Java NIO来说， 在事件处理器这个
+角色进行了一个升级，它为我们开发者提供了大量的回调方法，供我们在特定事件产生时实现相应的回调方法进行业务逻辑的处理。
+4. Conerete Event Handler (具体事件处理器) :是事件处理器的实现。它本身实现了事件处理器所提供的各个回调方法，从而实现了特定于业务的逻辑。它本质上就是我
+们所编写的一个个的处理器实现。
+5. Initiation Dispatcher (初始分发器:实际上就是Reactor角色。它本身定义了些规范， 这些规范用于控制事件的调度方式， 同时又提供了应用进行事件处理器的
+注册、删除等设施。它本身是整个事件处理器的核心所在，Initiation Diopatcher会通过同步事件分离器来等待事件的发生。旦事件发生， Tnitiation Dispatcher首
+先会分寓出每一个事件，然后调用事件处理器，最后调用相关的回调方法来处理这些事件。
+
+
+Reactor模式的流程
+1.当应用向Initiation Diepatcher注册具体的事件处理时，应用会标识出该事件处理器希望Initiat ion DI spatcher在某个事件发生时向其通知的该事件，该事件与
+Handlo关联。
+2. Initiation Dispatcher 会要求每个事件处理器向其传递内部的Handle.该Handle向操作系统标识了事件处理器。
+3.当所有的事件处理器注册完毕后，应用会调用handle events方法来启动Initiatlon DI opatcher的事件循环。这时，Initlation Diapatcher会将每个注册的事件?
+管理器的Handle合并起来，并使用同步事件分寓器等待这些事件的发生，比如说，TCP协议层会使用Belect同步事件分离器操作来等待客户建发送的数据到达连接的socket
+handle上。
+4.当与某个事件源对应的Handle变为ready状态时(比如说，TCP sooket变为等待读状态时 ，同步事件分高器就会通知Initiation Dispatcher
+5. Initiation Dispatcher 会触发事件处理器的回调方法，从而响应这个处于ready状态的Handle. 当事件发生时，Initiat ion Dispatcher会将被事件源激活的
+Handle作为Tkoyd来寻找并分发恰当的事件处理器回调方法。
+6. Initiation Dispatcher会回调事件处理器的handle events回调方法来执行特定于应用的功能(开发者自己所编写的功能)，从而响应这个事件。所发生的事件类型可
+以作为该方法参数并被该方法内部使用来执行额外的特定于服务的分离与分发。
+
